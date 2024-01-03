@@ -1,37 +1,47 @@
+using AdvancedConsoles.ConsoleStream;
+
 namespace AdvancedConsoles;
 
-public class MainConsole : IConsole
+public static class MainConsole
 {
-    public void Write(string value)
+    static MainConsole()
     {
-        Console.Write(value);
+        Console = ResolveStandardConsole();
+    }
+    
+    
+    public static Console Console { get; set; }
+
+
+    public static Console ResolveStandardConsole()
+    {
+        Console console = new AnsiConsole()
+        {
+            In = ConsoleIn.ResolveStandardInput(),
+            Out = ConsoleOut.ResolveStandardOutput(),
+            Error = ConsoleError.ResolveStandardError(),
+        };
+
+        return console;
     }
 
-    public void Write<T>(T value)
+    public static void ResetInput()
     {
-        throw new NotImplementedException();
+        Console.In = new StreamReader(System.Console.OpenStandardInput());
+    }
+    
+    public static void ResetOutput()
+    {
+        Console.Out = new StreamWriter(System.Console.OpenStandardOutput());
+    }
+    
+    public static void ResetError()
+    {
+        Console.Error = new StreamWriter(System.Console.OpenStandardError());
     }
 
-    public void Write<T>(T value, params object[] args)
+    public static void ResetConsole()
     {
-        throw new NotImplementedException();
-    }
-
-    public void WriteLine(string value)
-    {
-        Write(value);
-        Write(Environment.NewLine);
-    }
-
-    public void WriteLine<T>(T value)
-    {
-        Write(value);
-        Write(Environment.NewLine);
-    }
-
-    public void WriteLine<T>(T value, params object[] args)
-    {
-        Write(value);
-        Write(Environment.NewLine, args);
+        Console = ResolveStandardConsole();
     }
 }
