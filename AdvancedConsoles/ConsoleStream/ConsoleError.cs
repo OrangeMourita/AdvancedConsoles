@@ -2,44 +2,50 @@ namespace AdvancedConsoles.ConsoleStream;
 
 public class ConsoleError : IConsoleError
 {
-    public ConsoleError(StreamWriter streamWriter)
+    public ConsoleError(TextWriter textWriter)
     {
-        StreamWriter = streamWriter;
+        TextWriter = textWriter;
     }
     
-    protected StreamWriter StreamWriter { get; }
+    protected TextWriter TextWriter { get; set; }
     
     
-    public static implicit operator ConsoleError(StreamWriter streamWriter)
+    public static implicit operator ConsoleError(TextWriter textWriter)
     {
-        return new ConsoleError(streamWriter);
+        return new ConsoleError(textWriter);
     }
     
     
-    public static ConsoleError ResolveStandardError()
+    public void SetStandard()
     {
-        return new StreamWriter(System.Console.OpenStandardError());
+        StreamWriter standardErrorWriter = new StreamWriter(System.Console.OpenStandardError())
+        {
+            AutoFlush = true
+        };
+        
+        TextWriter = standardErrorWriter;
+        System.Console.SetError(TextWriter);
     }
-
+    
     
     public void Write(string value)
     {
-        StreamWriter.Write(value);
+        TextWriter.Write(value);
     }
 
     public void Write<T>(T value)
     {
-        StreamWriter.Write(value);
+        TextWriter.Write(value);
     }
     
 
     public void WriteLine(string value)
     {
-        StreamWriter.WriteLine(value);
+        TextWriter.WriteLine(value);
     }
 
     public void WriteLine<T>(T value)
     {
-        StreamWriter.WriteLine(value);
+        TextWriter.WriteLine(value);
     }
 }

@@ -4,6 +4,14 @@ class Program
 {
     static void Main(string[] args)
     {
-        Console.WriteLine("Hello, World!");
+        AnsiConsole console = new AnsiConsole()
+        {
+            Error = System.Console.Error,
+            Out = System.Console.Out,
+            In = System.Console.In,
+        };
+        
+        console.WriteLine("BAUM");
+        MainConsole.Console.WriteLine("Hi");
     }
 }

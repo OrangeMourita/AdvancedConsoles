@@ -2,22 +2,23 @@ namespace AdvancedConsoles.ConsoleStream;
 
 public class ConsoleIn : IConsoleIn
 {
-    public ConsoleIn(StreamReader streamReader)
+    public ConsoleIn(TextReader textReader)
     {
-        StreamReader = streamReader;
+        TextReader = textReader;
     }
     
-    protected StreamReader StreamReader { get; }
+    protected TextReader TextReader { get; set; }
     
     
-    public static implicit operator ConsoleIn(StreamReader streamReader)
+    public static implicit operator ConsoleIn(TextReader textReader)
     {
-        return new ConsoleIn(streamReader);
+        return new ConsoleIn(textReader);
     }
 
 
-    public static ConsoleIn ResolveStandardInput()
+    public void SetStandard()
     {
-        return new StreamReader(System.Console.OpenStandardInput());
+        TextReader = new StreamReader(System.Console.OpenStandardInput());
+        System.Console.SetIn(TextReader);
     }
 }

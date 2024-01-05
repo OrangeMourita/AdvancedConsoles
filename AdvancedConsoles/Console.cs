@@ -2,11 +2,11 @@
 
 namespace AdvancedConsoles;
 
-public abstract class Console : IConsoleIn, IConsoleOut
+public class Console : IConsoleIn, IConsoleOut
 {
-    public required ConsoleIn In { get; set; }
-    public required ConsoleOut Out { get; set; }
-    public required ConsoleError Error { get; set; }
+    public ConsoleIn In { get; set; } = System.Console.In;
+    public ConsoleOut Out { get; set; } = System.Console.Out;
+    public ConsoleError Error { get; set; } = System.Console.Error;
     
     
     public void Write(string value)

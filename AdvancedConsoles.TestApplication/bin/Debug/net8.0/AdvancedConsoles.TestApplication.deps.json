@@ -1,0 +1,36 @@
+{
+  "runtimeTarget": {
+    "name": ".NETCoreApp,Version=v8.0",
+    "signature": ""
+  },
+  "compilationOptions": {},
+  "targets": {
+    ".NETCoreApp,Version=v8.0": {
+      "AdvancedConsoles.TestApplication/1.0.0": {
+        "dependencies": {
+          "AdvancedConsoles": "1.0.0"
+        },
+        "runtime": {
+          "AdvancedConsoles.TestApplication.dll": {}
+        }
+      },
+      "AdvancedConsoles/1.0.0": {
+        "runtime": {
+          "AdvancedConsoles.dll": {}
+        }
+      }
+    }
+  },
+  "libraries": {
+    "AdvancedConsoles.TestApplication/1.0.0": {
+      "type": "project",
+      "serviceable": false,
+      "sha512": ""
+    },
+    "AdvancedConsoles/1.0.0": {
+      "type": "project",
+      "serviceable": false,
+      "sha512": ""
+    }
+  }
+}

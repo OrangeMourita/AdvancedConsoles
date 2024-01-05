@@ -2,43 +2,49 @@ namespace AdvancedConsoles.ConsoleStream;
 
 public class ConsoleOut : IConsoleOut
 {
-    public ConsoleOut(StreamWriter streamWriter)
+    public ConsoleOut(TextWriter textWriter)
     {
-        StreamWriter = streamWriter;
+        TextWriter = textWriter;
     }
     
-    protected StreamWriter StreamWriter { get; }
+    protected TextWriter TextWriter { get; set; }
     
     
-    public static implicit operator ConsoleOut(StreamWriter streamWriter)
+    public static implicit operator ConsoleOut(TextWriter textWriter)
     {
-        return new ConsoleOut(streamWriter);
+        return new ConsoleOut(textWriter);
     }
 
     
-    public static ConsoleOut ResolveStandardOutput()
+    public void SetStandard()
     {
-        return new StreamWriter(System.Console.OpenStandardOutput());
+        StreamWriter standardOutWriter = new StreamWriter(System.Console.OpenStandardOutput())
+        {
+            AutoFlush = true
+        };
+        
+        TextWriter = standardOutWriter;
+        System.Console.SetOut(TextWriter);
     }
 
     public void Write(string value)
     {
-        StreamWriter.Write(value);
+        TextWriter.Write(value);
     }
 
     public void Write<T>(T value)
     {
-        StreamWriter.Write(value);
+        TextWriter.Write(value);
     }
     
 
     public void WriteLine(string value)
     {
-        StreamWriter.WriteLine(value);
+        TextWriter.WriteLine(value);
     }
 
     public void WriteLine<T>(T value)
     {
-        StreamWriter.WriteLine(value);
+        TextWriter.WriteLine(value);
     }
 }

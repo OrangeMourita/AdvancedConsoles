@@ -6,21 +6,21 @@ public static class MainConsole
 {
     static MainConsole()
     {
-        Console = ResolveStandardConsole();
+        Console = ResolveStandardConsole<AnsiConsole>();
     }
     
     
     public static Console Console { get; set; }
 
 
-    public static Console ResolveStandardConsole()
+    public static T ResolveStandardConsole<T>() where T : Console, new()
     {
-        Console console = new AnsiConsole()
-        {
-            In = ConsoleIn.ResolveStandardInput(),
-            Out = ConsoleOut.ResolveStandardOutput(),
-            Error = ConsoleError.ResolveStandardError(),
-        };
+        T console = new T();
+        
+        console.In.SetStandard();
+        console.Out.SetStandard();
+        console.Error.SetStandard();
+        
 
         return console;
     }
@@ -40,8 +40,8 @@ public static class MainConsole
         Console.Error = new StreamWriter(System.Console.OpenStandardError());
     }
 
-    public static void ResetConsole()
+    public static void ResetConsole<T>() where T : Console, new()
     {
-        Console = ResolveStandardConsole();
+        Console = ResolveStandardConsole<T>();
     }
 }
