@@ -10,10 +10,10 @@ public static class MainConsole
     }
     
     
-    public static Console Console { get; set; }
+    public static AnsiConsole Console { get; set; }
 
 
-    public static T ResolveStandardConsole<T>() where T : Console, new()
+    public static T ResolveStandardConsole<T>() where T : AnsiConsole, new()
     {
         T console = new T();
         
@@ -40,8 +40,29 @@ public static class MainConsole
         Console.Error = new StreamWriter(System.Console.OpenStandardError());
     }
 
-    public static void ResetConsole<T>() where T : Console, new()
+    public static void ResetConsole<T>() where T : AnsiConsole, new()
     {
         Console = ResolveStandardConsole<T>();
+    }
+    
+    
+    public static void Write(string value)
+    {
+        Console.Write(value);
+    }
+
+    public static void Write<T>(T value)
+    {
+        Console.Write(value);
+    }
+
+    public static void WriteLine(string value)
+    {
+        Console.WriteLine(value);
+    }
+
+    public static void WriteLine<T>(T value)
+    {
+        Console.WriteLine(value);
     }
 }
