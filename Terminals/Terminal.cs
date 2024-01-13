@@ -1,4 +1,6 @@
-﻿using System.Text;
+﻿using System.Reflection.PortableExecutable;
+using System.Text;
+using Console = System.Console;
 
 namespace Terminals;
 
@@ -21,9 +23,30 @@ public abstract class Terminal
         StandardOutput.Write(buffer, 0, buffer.Length);
     }
 
-
+    
+    public virtual void WriteLine(char value)
+    {
+        Write(value + Environment.NewLine);
+    }
+    
     public virtual void WriteLine(string value)
     {
         Write(value + Environment.NewLine);
+    }
+
+    
+    public virtual int Read()
+    {
+        byte[] buffer = new byte[4];
+        
+        int readBytes = StandardInput.Read(buffer, 0, buffer.Length);
+        string unicodeString = Encoding.UTF8.GetString(buffer);
+
+        return unicodeString[0];
+    }
+
+    public virtual string? ReadLine()
+    {
+        throw new NotImplementedException();
     }
 }

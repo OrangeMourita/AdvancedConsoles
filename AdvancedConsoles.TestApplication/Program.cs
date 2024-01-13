@@ -1,4 +1,5 @@
-﻿using AdvancedConsoles.ConsoleStream;
+﻿using System.Text;
+using AdvancedConsoles.ConsoleStream;
 using Terminals;
 
 namespace AdvancedConsoles.TestApplication;
@@ -15,19 +16,6 @@ public static class Program
         Terminal terminal = new MainTerminal();
         
         AnsiConsole ansiConsole = new AnsiConsole(terminal);
-        ansiConsole.Out.Write('H');
-
-        ansiConsole.Out = sw;
-        
-
-        
-        ansiConsole.Out.Write('i');
-        
-        ansiConsole.Out.Reset();
-
-        ansiConsole.Out.Write("HEY SISTER; WHERE THE HELL IS YOU BABA BROTHER");
-
-        ms.Seek(0, SeekOrigin.Begin);
-        // Console.Write(sr.ReadToEnd());
+        ansiConsole.Out.WriteLine("");
     }
 }
