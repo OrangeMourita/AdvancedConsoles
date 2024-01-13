@@ -1,0 +1,12 @@
+/home/mourita/Documents/programmieren/repos/AdvancedConsoles/Terminals/bin/Debug/net8.0/Terminals.deps.json
+/home/mourita/Documents/programmieren/repos/AdvancedConsoles/Terminals/bin/Debug/net8.0/Terminals.dll
+/home/mourita/Documents/programmieren/repos/AdvancedConsoles/Terminals/bin/Debug/net8.0/Terminals.pdb
+/home/mourita/Documents/programmieren/repos/AdvancedConsoles/Terminals/obj/Debug/net8.0/Terminals.GeneratedMSBuildEditorConfig.editorconfig
+/home/mourita/Documents/programmieren/repos/AdvancedConsoles/Terminals/obj/Debug/net8.0/Terminals.AssemblyInfoInputs.cache
+/home/mourita/Documents/programmieren/repos/AdvancedConsoles/Terminals/obj/Debug/net8.0/Terminals.AssemblyInfo.cs
+/home/mourita/Documents/programmieren/repos/AdvancedConsoles/Terminals/obj/Debug/net8.0/Terminals.csproj.CoreCompileInputs.cache
+/home/mourita/Documents/programmieren/repos/AdvancedConsoles/Terminals/obj/Debug/net8.0/Terminals.sourcelink.json
+/home/mourita/Documents/programmieren/repos/AdvancedConsoles/Terminals/obj/Debug/net8.0/Terminals.dll
+/home/mourita/Documents/programmieren/repos/AdvancedConsoles/Terminals/obj/Debug/net8.0/refint/Terminals.dll
+/home/mourita/Documents/programmieren/repos/AdvancedConsoles/Terminals/obj/Debug/net8.0/Terminals.pdb
+/home/mourita/Documents/programmieren/repos/AdvancedConsoles/Terminals/obj/Debug/net8.0/ref/Terminals.dll
