@@ -1,5 +1,4 @@
 ﻿using System.Text;
-using AdvancedConsoles.ConsoleStream;
 using Terminals;
 
 namespace AdvancedConsoles.TestApplication;
@@ -9,13 +8,16 @@ public static class Program
     public static void Main(string[] args)
     {
         MemoryStream ms = new MemoryStream();
-        StreamWriter sw = new StreamWriter(ms);
+        StreamWriter sw = new StreamWriter(ms)
+        {
+            AutoFlush = true
+        };
         StreamReader sr = new StreamReader(ms);
-
-
-        Terminal terminal = new MainTerminal();
         
+        Terminal terminal = new MainTerminal();
         AnsiConsole ansiConsole = new AnsiConsole(terminal);
-        ansiConsole.Out.WriteLine("");
+        
+        string? readLine = ansiConsole.In.ReadLine();
+        ansiConsole.Out.WriteLine(readLine);
     }
 }

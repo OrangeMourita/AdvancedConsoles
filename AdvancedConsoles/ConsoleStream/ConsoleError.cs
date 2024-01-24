@@ -3,19 +3,19 @@ using Terminals;
 
 namespace AdvancedConsoles.ConsoleStream;
 
-public class ConsoleOut : TextWriter
+public class ConsoleError : TextWriter
 {
-    internal ConsoleOut(Terminal terminal)
+    internal ConsoleError(Terminal terminal)
     {
-        TerminalOutWriter = new StreamWriter(terminal.StandardOutput)
+        TerminalErrorWriter = new StreamWriter(terminal.StandardError)
         {
             AutoFlush = true
         };
     }
     
-    protected TextWriter TerminalOutWriter { get; set; }
+    protected TextWriter TerminalErrorWriter { get; set; }
     protected TextWriter? RedirectedStreamWriter { get; set; }
-    protected TextWriter SelectedWriter => !IsRedirected ? TerminalOutWriter : RedirectedStreamWriter!;
+    protected TextWriter SelectedWriter => !IsRedirected ? TerminalErrorWriter : RedirectedStreamWriter!;
     public bool IsRedirected { get; protected set; }
     public override Encoding Encoding => SelectedWriter.Encoding;
 
@@ -31,7 +31,7 @@ public class ConsoleOut : TextWriter
     {
         return SelectedWriter.WriteAsync(value);
     }
-
+    
     
     
     public void RedirectTo(Stream stream)
