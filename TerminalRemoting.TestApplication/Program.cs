@@ -1,12 +1,15 @@
 ﻿using System.Text;
+using TerminalRemoting;
+using TerminalRemoting.Terminals;
+using TerminalRemoting.Terminals.StreamProviding;
 
-namespace Terminals.TestApplication;
+namespace TerminalRemoting.TestApplication;
 
 public static class Program
 {
     public static async Task Main(string[] args)
     {
-        MainTerminal terminal = new MainTerminal();
+        Terminal terminal = TerminalManager.MainTerminal;
 
         StreamReader sr = new StreamReader(terminal.StandardInput);
         Task<string?> task = sr.ReadLineAsync();

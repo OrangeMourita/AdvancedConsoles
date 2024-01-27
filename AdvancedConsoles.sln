@@ -5,11 +5,13 @@ VisualStudioVersion = 17.0.31903.59
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AdvancedConsoles", "AdvancedConsoles\AdvancedConsoles.csproj", "{747FD7C4-E8D4-49AC-A635-4B4923D525CD}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Terminals", "Terminals\Terminals.csproj", "{F73BB63C-EAA3-4C69-A89D-C18AD3AF4514}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TerminalRemoting", "TerminalRemoting\TerminalRemoting.csproj", "{F73BB63C-EAA3-4C69-A89D-C18AD3AF4514}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Terminals.TestApplication", "Terminals.TestApplication\Terminals.TestApplication.csproj", "{D05E6BF2-0604-4198-9C9F-D6602E39BCB5}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TerminalRemoting.TestApplication", "TerminalRemoting.TestApplication\TerminalRemoting.TestApplication.csproj", "{D05E6BF2-0604-4198-9C9F-D6602E39BCB5}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AdvancedConsoles.TestApplication", "AdvancedConsoles.TestApplication\AdvancedConsoles.TestApplication.csproj", "{5F40F379-CA79-47C5-929D-9A4E89A1CAAE}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "TerminalRemoting", "TerminalRemoting", "{403EB550-7741-4778-A52C-466697EDA388}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -36,5 +38,9 @@ Global
 		{5F40F379-CA79-47C5-929D-9A4E89A1CAAE}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{5F40F379-CA79-47C5-929D-9A4E89A1CAAE}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{5F40F379-CA79-47C5-929D-9A4E89A1CAAE}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{F73BB63C-EAA3-4C69-A89D-C18AD3AF4514} = {403EB550-7741-4778-A52C-466697EDA388}
+		{D05E6BF2-0604-4198-9C9F-D6602E39BCB5} = {403EB550-7741-4778-A52C-466697EDA388}
 	EndGlobalSection
 EndGlobal

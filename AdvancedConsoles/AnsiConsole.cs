@@ -1,5 +1,6 @@
 ﻿using AdvancedConsoles.ConsoleStream;
-using Terminals;
+using TerminalRemoting;
+using TerminalRemoting.Terminals;
 
 namespace AdvancedConsoles;
 

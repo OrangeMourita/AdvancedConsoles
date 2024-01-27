@@ -7,7 +7,7 @@
     </PropertyGroup>
 
     <ItemGroup>
-      <ProjectReference Include="..\Terminals\Terminals.csproj" />
+      <ProjectReference Include="..\TerminalRemoting\TerminalRemoting.csproj" />
     </ItemGroup>
 
 </Project>
