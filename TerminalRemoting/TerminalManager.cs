@@ -64,7 +64,7 @@ public static class TerminalManager
     }
     public static RemoteTerminal OpenNewTerminalWindow(LaunchCommand launchCommand) 
     {
-        // launchCommand.Execute(path, "--pid ... --tid ...");
+        // launchCommand.Execute(path, $"--pid {Environment.ProcessId} --tid {tid}");
         
         MainTerminal mainTerminal = new MainTerminal();
         ITerminalStreamProvider terminalStreamProvider = MainTerminalStreamProvider.CreateStandardStreamProvider(mainTerminal);;
@@ -73,14 +73,13 @@ public static class TerminalManager
         throw new NotImplementedException();
     }
     
-    
     public static RemoteTerminal OpenNewTerminalWindow<TStreamProvider>(TerminalEmulator terminalEmulator) where TStreamProvider : ITerminalStreamProvider
     {
         return OpenNewTerminalWindow<TStreamProvider>(terminalEmulator.GetLaunchCommand());
     }
     public static RemoteTerminal OpenNewTerminalWindow<TStreamProvider>(LaunchCommand launchCommand) where TStreamProvider : ITerminalStreamProvider
     {
-        // launchCommand.Execute(path, "--pid ... --tid ...");
+        // launchCommand.Execute(path, $"--pid {Environment.ProcessId} --tid {tid}");
         
         MainTerminal mainTerminal = new MainTerminal();
 
