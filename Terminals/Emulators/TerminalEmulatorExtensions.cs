@@ -1,6 +1,6 @@
 using System.Reflection;
 
-namespace TerminalRemoting.TerminalEmulators;
+namespace Terminals.Emulators;
 
 public static class TerminalEmulatorExtensions
 {

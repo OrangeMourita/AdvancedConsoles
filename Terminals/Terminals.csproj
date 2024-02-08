@@ -4,11 +4,14 @@
         <TargetFramework>net8.0</TargetFramework>
         <ImplicitUsings>enable</ImplicitUsings>
         <Nullable>enable</Nullable>
-        <OutputType>Exe</OutputType>
     </PropertyGroup>
 
     <ItemGroup>
-      <ProjectReference Include="..\TerminalRemoting\TerminalRemoting.csproj" />
+      <PackageReference Include="H.Pipes" Version="2.1.0-dev.322" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <ProjectReference Include="..\RemoteTerminalGuest\RemoteTerminalGuest.csproj" />
     </ItemGroup>
 
 </Project>

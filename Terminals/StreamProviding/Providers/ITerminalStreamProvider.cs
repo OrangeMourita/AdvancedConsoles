@@ -1,4 +1,6 @@
-namespace TerminalRemoting.Terminals.StreamProviding;
+using Terminals.Types;
+
+namespace Terminals.StreamProviding.Providers;
 
 public interface ITerminalStreamProvider
 {

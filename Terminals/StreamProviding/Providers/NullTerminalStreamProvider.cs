@@ -1,4 +1,6 @@
-namespace TerminalRemoting.Terminals.StreamProviding;
+using Terminals.Types;
+
+namespace Terminals.StreamProviding.Providers;
 
 public class NullTerminalStreamProvider : ITerminalStreamProvider
 {
@@ -21,17 +23,15 @@ public class NullTerminalStreamProvider : ITerminalStreamProvider
 
     public virtual Stream AcquireStandardInput()
     {
-        return File.Open("/dev/null", FileMode.Open, FileAccess.ReadWrite, FileShare.ReadWrite);
+        return Stream.Null;
     }
 
     public virtual Stream AcquireStandardOutput()
     {
-        return File.Open("/dev/null", FileMode.Open, FileAccess.ReadWrite, FileShare.ReadWrite);
-    }
+        return Stream.Null;    }
 
     public virtual Stream AcquireStandardError()
     {
-        return File.Open("/dev/null", FileMode.Open, FileAccess.ReadWrite, FileShare.ReadWrite);
-    }
+        return Stream.Null;    }
     
 }

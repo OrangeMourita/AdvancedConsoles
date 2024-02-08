@@ -1,4 +1,4 @@
-namespace TerminalRemoting.TerminalEmulators;
+namespace Terminals.Emulators;
 
 [AttributeUsage(AttributeTargets.Field)]
 public class LaunchCommandAttribute : Attribute

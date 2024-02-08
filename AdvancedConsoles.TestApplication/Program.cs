@@ -1,8 +1,5 @@
-﻿using System;
-using System.Diagnostics;
-using System.Text;
-using TerminalRemoting;
-using TerminalRemoting.Terminals;
+﻿using Terminals;
+using Terminals.Types;
 
 namespace AdvancedConsoles.TestApplication;
 

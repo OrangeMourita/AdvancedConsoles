@@ -1,8 +1,8 @@
 using System.IO;
 using System.Text;
 using System.Threading.Tasks;
-using TerminalRemoting;
-using TerminalRemoting.Terminals;
+using Terminals;
+using Terminals.Types;
 
 namespace AdvancedConsoles.ConsoleStream;
 

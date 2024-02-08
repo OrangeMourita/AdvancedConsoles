@@ -1,4 +1,4 @@
-namespace TerminalRemoting.Terminals;
+namespace Terminals.Types;
 
 public class MainTerminal : Terminal
 {
