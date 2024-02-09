@@ -1,7 +1,7 @@
 ﻿using System.IO.Pipes;
 using CommandLine;
 
-namespace RemoteTerminalGuest;
+namespace ChildTerminalGuest;
 
 public class Program
 {

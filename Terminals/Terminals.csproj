@@ -11,7 +11,7 @@
     </ItemGroup>
 
     <ItemGroup>
-      <ProjectReference Include="..\RemoteTerminalGuest\RemoteTerminalGuest.csproj" />
+      <ProjectReference Include="..\ChildTerminalGuest\ChildTerminalGuest.csproj" />
     </ItemGroup>
 
 </Project>

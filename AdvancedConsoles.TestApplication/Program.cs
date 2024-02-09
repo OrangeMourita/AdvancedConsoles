@@ -7,7 +7,7 @@ public static class Program
 {
     public static void Main(string[] args)
     {
-        Terminal terminal = TerminalManager.MainTerminal;
+        Terminal terminal = TerminalManager.RootTerminal;
         AnsiConsole ansiConsole = new AnsiConsole(terminal);
         
         ansiConsole.Out.WriteLine($"pid: {Environment.ProcessId}");

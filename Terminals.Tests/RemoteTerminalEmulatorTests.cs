@@ -8,14 +8,14 @@ public class RemoteTerminalEmulatorTests
     [Fact]
     public async Task Open_New_Remote_Terminal_Xfce4Terminal()
     {
-        RemoteTerminal remoteTerminal = await TerminalManager.OpenNewTerminalWindowAsync(TerminalEmulator.Xfce4Terminal);
+        ChildTerminal childTerminal = await TerminalManager.OpenNewTerminalWindowAsync(TerminalEmulator.Xfce4Terminal);
         
-        using (StreamWriter writer = new StreamWriter(remoteTerminal.StandardOutput))
+        using (StreamWriter writer = new StreamWriter(childTerminal.StandardOutput))
         {
             writer.AutoFlush = true;
             await writer.WriteLineAsync("Hello World!");
             
-            StreamReader reader = new StreamReader(remoteTerminal.StandardInput);
+            StreamReader reader = new StreamReader(childTerminal.StandardInput);
             await writer.WriteLineAsync(await reader.ReadLineAsync());
         }
     }
@@ -23,14 +23,14 @@ public class RemoteTerminalEmulatorTests
     [Fact]
     public async Task Open_New_Remote_Terminal_GnomeTerminal()
     {
-        RemoteTerminal remoteTerminal = await TerminalManager.OpenNewTerminalWindowAsync(TerminalEmulator.GnomeTerminal);
+        ChildTerminal childTerminal = await TerminalManager.OpenNewTerminalWindowAsync(TerminalEmulator.GnomeTerminal);
 
-        using (StreamWriter writer = new StreamWriter(remoteTerminal.StandardOutput))
+        using (StreamWriter writer = new StreamWriter(childTerminal.StandardOutput))
         {
             writer.AutoFlush = true;
             await writer.WriteLineAsync("Hello World!");
             
-            StreamReader reader = new StreamReader(remoteTerminal.StandardInput);
+            StreamReader reader = new StreamReader(childTerminal.StandardInput);
             await writer.WriteLineAsync(await reader.ReadLineAsync());
         }
     }
@@ -38,14 +38,14 @@ public class RemoteTerminalEmulatorTests
     [Fact]
     public async Task Open_New_Remote_Terminal_XTerm()
     {
-        RemoteTerminal remoteTerminal = await TerminalManager.OpenNewTerminalWindowAsync(TerminalEmulator.XTerm);
+        ChildTerminal childTerminal = await TerminalManager.OpenNewTerminalWindowAsync(TerminalEmulator.XTerm);
 
-        using (StreamWriter writer = new StreamWriter(remoteTerminal.StandardOutput))
+        using (StreamWriter writer = new StreamWriter(childTerminal.StandardOutput))
         {
             writer.AutoFlush = true;
             await writer.WriteLineAsync("Hello World!");
             
-            StreamReader reader = new StreamReader(remoteTerminal.StandardInput);
+            StreamReader reader = new StreamReader(childTerminal.StandardInput);
             await writer.WriteLineAsync(await reader.ReadLineAsync());
         }
     }
@@ -53,14 +53,14 @@ public class RemoteTerminalEmulatorTests
     [Fact]
     public async Task Open_New_Remote_Terminal_Konsole()
     {
-        RemoteTerminal remoteTerminal = await TerminalManager.OpenNewTerminalWindowAsync(TerminalEmulator.Konsole);
+        ChildTerminal childTerminal = await TerminalManager.OpenNewTerminalWindowAsync(TerminalEmulator.Konsole);
 
-        using (StreamWriter writer = new StreamWriter(remoteTerminal.StandardOutput))
+        using (StreamWriter writer = new StreamWriter(childTerminal.StandardOutput))
         {
             writer.AutoFlush = true;
             await writer.WriteLineAsync("Hello World!");
             
-            StreamReader reader = new StreamReader(remoteTerminal.StandardInput);
+            StreamReader reader = new StreamReader(childTerminal.StandardInput);
             await writer.WriteLineAsync(await reader.ReadLineAsync());
         }
     }

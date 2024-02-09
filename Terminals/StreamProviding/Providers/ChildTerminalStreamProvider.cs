@@ -5,10 +5,10 @@ using Terminals.Types;
 
 namespace Terminals.StreamProviding.Providers;
 
-public class RemoteTerminalStreamProvider : ITerminalStreamProvider
+public class ChildTerminalStreamProvider : ITerminalStreamProvider
 {
 
-    private RemoteTerminalStreamProvider(Terminal terminal)
+    private ChildTerminalStreamProvider(Terminal terminal)
     {
         Terminal = terminal;
     }
@@ -19,7 +19,7 @@ public class RemoteTerminalStreamProvider : ITerminalStreamProvider
 
     public static ITerminalStreamProvider CreateStandardStreamProvider(Terminal terminal)
     {
-        return new RemoteTerminalStreamProvider(terminal);
+        return new ChildTerminalStreamProvider(terminal);
     }
 
 

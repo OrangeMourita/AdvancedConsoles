@@ -1,7 +1,7 @@
 using CommandLine;
 
 
-namespace RemoteTerminalGuest;
+namespace ChildTerminalGuest;
 
 public class Options
 {

@@ -4,9 +4,9 @@ using Terminals.Emulators;
 
 namespace Terminals.Types;
 
-public class RemoteTerminal : Terminal
+public class ChildTerminal : Terminal
 {
-    private RemoteTerminal()
+    private ChildTerminal()
     {
         
     }
@@ -15,7 +15,7 @@ public class RemoteTerminal : Terminal
     public int TerminalId { get; private init; }
 
 
-    public static async Task<RemoteTerminal> CreateAsync(int terminalId, LaunchCommand launchCommand)
+    public static async Task<ChildTerminal> CreateAsync(int terminalId, LaunchCommand launchCommand)
     {
         int remoteTerminalProcessId;
         
@@ -40,20 +40,20 @@ public class RemoteTerminal : Terminal
             SemaphoreSlim.Release();
         }
         
-        RemoteTerminal remoteTerminal = new RemoteTerminal()
+        ChildTerminal childTerminal = new ChildTerminal()
         {
             TerminalId = terminalId,
             ProcessId = remoteTerminalProcessId,
         };
 
-        return remoteTerminal;
+        return childTerminal;
     }
 
 
     private static string GetRemoteTerminalGuestPath()
     {
         string baseDirectory = AppDomain.CurrentDomain.BaseDirectory;
-        string fileName = "RemoteTerminalGuest";
+        string fileName = "Terminals.CoreinalGuest";
         string fileExtension;
         
         if (RuntimeInformation.IsOSPlatform(OSPlatform.Windows))

@@ -11,7 +11,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AdvancedConsoles.TestApplic
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "TerminalRemoting", "TerminalRemoting", "{403EB550-7741-4778-A52C-466697EDA388}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RemoteTerminalGuest", "RemoteTerminalGuest\RemoteTerminalGuest.csproj", "{8EAB416F-23CA-4BC5-B217-29D7403FBF6D}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ChildTerminalGuest", "ChildTerminalGuest\ChildTerminalGuest.csproj", "{8EAB416F-23CA-4BC5-B217-29D7403FBF6D}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Terminals.Tests", "Terminals.Tests\Terminals.Tests.csproj", "{CB660A3C-6F8B-4CD2-9B88-79CE147672E0}"
 EndProject

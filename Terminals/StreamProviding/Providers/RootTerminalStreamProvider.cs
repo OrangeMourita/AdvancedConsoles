@@ -4,9 +4,9 @@ using Terminals.Types;
 
 namespace Terminals.StreamProviding.Providers;
 
-public class MainTerminalStreamProvider : ITerminalStreamProvider
+public class RootTerminalStreamProvider : ITerminalStreamProvider
 {
-    private MainTerminalStreamProvider(Terminal terminal)
+    private RootTerminalStreamProvider(Terminal terminal)
     {
         Terminal = terminal;
     }
@@ -17,7 +17,7 @@ public class MainTerminalStreamProvider : ITerminalStreamProvider
 
     public static ITerminalStreamProvider CreateStandardStreamProvider(Terminal terminal)
     {
-        return new MainTerminalStreamProvider(terminal);
+        return new RootTerminalStreamProvider(terminal);
     }
 
 
