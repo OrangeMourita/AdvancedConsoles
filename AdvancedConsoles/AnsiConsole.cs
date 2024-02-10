@@ -1,5 +1,4 @@
 ﻿using AdvancedConsoles.ConsoleStream;
-using Terminals;
 using Terminals.Types;
 
 namespace AdvancedConsoles;

@@ -1,6 +1,5 @@
 using System.IO;
 using System.Text;
-using Terminals;
 using Terminals.Types;
 
 namespace AdvancedConsoles.ConsoleStream;

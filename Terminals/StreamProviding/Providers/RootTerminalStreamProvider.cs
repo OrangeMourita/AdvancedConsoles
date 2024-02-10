@@ -22,38 +22,42 @@ public class RootTerminalStreamProvider : ITerminalStreamProvider
 
 
 
-    public virtual Stream AcquireStandardInput()
+    public virtual TerminalStream AcquireStandardInput()
     {
         if (RuntimeInformation.IsOSPlatform(OSPlatform.Linux))
         {
-            return UnixTerminalStream.Open("/dev/stdin", FileMode.Open, FileAccess.Read, FileShare.ReadWrite);}
+            return UnixTerminalStream.Open(TerminalStreamType.In);
+        }
         else
         {
-            return Console.OpenStandardInput();
+            throw new PlatformNotSupportedException();
+            // return Console.OpenStandardInput();
         }
     }
 
-    public virtual Stream AcquireStandardOutput()
+    public virtual TerminalStream AcquireStandardOutput()
     {
         if (RuntimeInformation.IsOSPlatform(OSPlatform.Linux))
         {
-            return UnixTerminalStream.Open($"/dev/stdout", FileMode.Open, FileAccess.Write, FileShare.ReadWrite);
+            return UnixTerminalStream.Open(TerminalStreamType.Out);
         }
         else
         {
-            return Console.OpenStandardOutput();
+            throw new PlatformNotSupportedException();
+            // return Console.OpenStandardOutput();
         }
     }
 
-    public virtual Stream AcquireStandardError()
+    public virtual TerminalStream AcquireStandardError()
     {
         if (RuntimeInformation.IsOSPlatform(OSPlatform.Linux))
         {
-            return UnixTerminalStream.Open("/dev/stderr", FileMode.Open, FileAccess.Write, FileShare.ReadWrite);
+            return UnixTerminalStream.Open(TerminalStreamType.Error);
         }
         else
         {
-            return Console.OpenStandardError();
+            throw new PlatformNotSupportedException();
+            // return Console.OpenStandardError();
         }
     }
     

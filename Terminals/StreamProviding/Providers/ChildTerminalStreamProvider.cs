@@ -1,5 +1,7 @@
-using System.Net;
+using System.IO.Pipes;
 using System.Runtime.InteropServices;
+using ChildTerminalGuest;
+using StreamJsonRpc;
 using Terminals.StreamProviding.Streams;
 using Terminals.Types;
 
@@ -24,36 +26,45 @@ public class ChildTerminalStreamProvider : ITerminalStreamProvider
 
 
 
-    public virtual Stream AcquireStandardInput()
+    public virtual TerminalStream AcquireStandardInput()
     {
         if (RuntimeInformation.IsOSPlatform(OSPlatform.Linux))
         {
             Console.WriteLine(Terminal.ProcessId);
             
-            return UnixTerminalStream.Open($"/proc/{Terminal.ProcessId}/fd/0", FileMode.Open, FileAccess.Read, FileShare.ReadWrite);
+            return UnixTerminalStream.Open(Terminal.ProcessId, TerminalStreamType.In);
         }
 
         throw new PlatformNotSupportedException("Any platform other than Linux is currently not supported.");
     }
 
-    public virtual Stream AcquireStandardOutput()
+    public virtual TerminalStream AcquireStandardOutput()
     {
         if (RuntimeInformation.IsOSPlatform(OSPlatform.Linux))
         {
-            return UnixTerminalStream.Open($"/proc/{Terminal.ProcessId}/fd/1", FileMode.Open, FileAccess.Write, FileShare.ReadWrite);
+            return UnixTerminalStream.Open(Terminal.ProcessId, TerminalStreamType.Out);
         }
         
         throw new PlatformNotSupportedException("Any platform other than Linux is currently not supported.");
     }
 
-    public virtual Stream AcquireStandardError()
+    public virtual TerminalStream AcquireStandardError()
     {
         if (RuntimeInformation.IsOSPlatform(OSPlatform.Linux))
         {
-            return UnixTerminalStream.Open($"/proc/{Terminal.ProcessId}/fd/2", FileMode.Open, FileAccess.Write, FileShare.ReadWrite);
+            return UnixTerminalStream.Open(Terminal.ProcessId, TerminalStreamType.Error);
         }
         
         throw new PlatformNotSupportedException("Any platform other than Linux is currently not supported.");
     }
     
+    
+    public virtual async Task<TerminalCommunicationStreamClient> AcquireCommunicationStreamAsync()
+    {
+        // TODO Move functionality to TerminalCommunicationStreamClient
+        NamedPipeClientStream communicationPipe = new NamedPipeClientStream($"ChildTerminalCommunication_{Terminal.ProcessId}");
+        await communicationPipe.ConnectAsync();
+
+        throw new NotImplementedException();
+    }
 }

@@ -1,13 +1,16 @@
 using Terminals.Emulators;
+using Terminals.StreamProviding.Streams;
 using Terminals.Types;
 
 namespace Terminals.Tests;
 
-public class RemoteTerminalEmulatorTests
+public class TerminalEmulatorTests
 {
     [Fact]
-    public async Task Open_New_Remote_Terminal_Xfce4Terminal()
+    public async Task Open_New_Child_Terminal_Xfce4Terminal()
     {
+        ((UnixTerminalStream) TerminalManager.RootTerminal.StandardOutput).Write("Wer kann mich prüfen?"u8);
+        
         ChildTerminal childTerminal = await TerminalManager.OpenNewTerminalWindowAsync(TerminalEmulator.Xfce4Terminal);
         
         using (StreamWriter writer = new StreamWriter(childTerminal.StandardOutput))
@@ -21,7 +24,7 @@ public class RemoteTerminalEmulatorTests
     }
     
     [Fact]
-    public async Task Open_New_Remote_Terminal_GnomeTerminal()
+    public async Task Open_New_Child_Terminal_GnomeTerminal()
     {
         ChildTerminal childTerminal = await TerminalManager.OpenNewTerminalWindowAsync(TerminalEmulator.GnomeTerminal);
 
@@ -36,10 +39,10 @@ public class RemoteTerminalEmulatorTests
     }
     
     [Fact]
-    public async Task Open_New_Remote_Terminal_XTerm()
+    public async Task Open_New_Child_Terminal_XTerm()
     {
         ChildTerminal childTerminal = await TerminalManager.OpenNewTerminalWindowAsync(TerminalEmulator.XTerm);
-
+        
         using (StreamWriter writer = new StreamWriter(childTerminal.StandardOutput))
         {
             writer.AutoFlush = true;
@@ -51,7 +54,7 @@ public class RemoteTerminalEmulatorTests
     }
     
     [Fact]
-    public async Task Open_New_Remote_Terminal_Konsole()
+    public async Task Open_New_Child_Terminal_Konsole()
     {
         ChildTerminal childTerminal = await TerminalManager.OpenNewTerminalWindowAsync(TerminalEmulator.Konsole);
 

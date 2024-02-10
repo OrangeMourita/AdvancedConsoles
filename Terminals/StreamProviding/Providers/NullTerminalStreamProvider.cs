@@ -1,3 +1,5 @@
+using System.Runtime.InteropServices;
+using Terminals.StreamProviding.Streams;
 using Terminals.Types;
 
 namespace Terminals.StreamProviding.Providers;
@@ -21,17 +23,34 @@ public class NullTerminalStreamProvider : ITerminalStreamProvider
 
 
 
-    public virtual Stream AcquireStandardInput()
+    public virtual TerminalStream AcquireStandardInput()
     {
-        return Stream.Null;
+        if (RuntimeInformation.IsOSPlatform(OSPlatform.Linux))
+        {
+            return UnixTerminalStream.Null;
+        }
+
+        throw new NotImplementedException();
     }
 
-    public virtual Stream AcquireStandardOutput()
+    public virtual TerminalStream AcquireStandardOutput()
     {
-        return Stream.Null;    }
+        if (RuntimeInformation.IsOSPlatform(OSPlatform.Linux))
+        {
+            return UnixTerminalStream.Null;
+        }
 
-    public virtual Stream AcquireStandardError()
+        throw new NotImplementedException();
+    }
+
+    public virtual TerminalStream AcquireStandardError()
     {
-        return Stream.Null;    }
+        if (RuntimeInformation.IsOSPlatform(OSPlatform.Linux))
+        {
+            return UnixTerminalStream.Null;
+        }
+
+        throw new NotImplementedException();
+    }
     
 }

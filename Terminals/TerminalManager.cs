@@ -1,6 +1,5 @@
 using System.Collections.ObjectModel;
 using Terminals.Emulators;
-using Terminals.StreamProviding;
 using Terminals.StreamProviding.Providers;
 using Terminals.Types;
 
@@ -12,7 +11,7 @@ public static class TerminalManager
     
     static TerminalManager()
     {
-        InitializeMainTerminal();
+        InitializeRootTerminal();
     }
 
     private static Collection<Terminal> AvailableTerminals { get; set; } = [];
@@ -30,7 +29,7 @@ public static class TerminalManager
 
     
     
-    private static void InitializeMainTerminal()
+    private static void InitializeRootTerminal()
     {
         RootTerminal rootTerminal = new RootTerminal()
         {
@@ -49,7 +48,7 @@ public static class TerminalManager
     /// This method method is slower due to being reflection based.
     /// </summary>
     /// <typeparam name="TStreamProvider"></typeparam>
-    public static RootTerminal InitializeMainTerminal<TStreamProvider>() where TStreamProvider : ITerminalStreamProvider
+    public static RootTerminal InitializeRootTerminal<TStreamProvider>() where TStreamProvider : ITerminalStreamProvider
     {
         RootTerminal rootTerminal = new RootTerminal();
         TStreamProvider terminalStreamProvider = (TStreamProvider) typeof(TStreamProvider).GetMethod("CreateStandardStreamProvider").Invoke(null, [rootTerminal]);
@@ -66,7 +65,7 @@ public static class TerminalManager
         return OpenNewTerminalWindowAsync(terminalEmulator.GetLaunchCommand());
     }
     
-    public static Task<ChildTerminal> OpenNewTerminalWindowAsync<TStreamProvider>(TerminalEmulator terminalEmulator) where TStreamProvider : ITerminalStreamProvider
+    public static Task<ChildTerminal> OpenNewTerminalWindowAsync<TStreamProvider>(TerminalEmulator terminalEmulator) where TStreamProvider : ChildTerminalStreamProvider, ITerminalStreamProvider
     {
         return OpenNewTerminalWindowAsync<TStreamProvider>(terminalEmulator.GetLaunchCommand());
     }
@@ -77,7 +76,7 @@ public static class TerminalManager
         return OpenNewTerminalWindowAsync<ChildTerminalStreamProvider>(launchCommand);
     }
 
-    public static async Task<ChildTerminal> OpenNewTerminalWindowAsync<TStreamProvider>(LaunchCommand launchCommand) where TStreamProvider : ITerminalStreamProvider
+    public static async Task<ChildTerminal> OpenNewTerminalWindowAsync<TStreamProvider>(LaunchCommand launchCommand) where TStreamProvider : ChildTerminalStreamProvider, ITerminalStreamProvider
     {
         // todo generate unique terminalId
         int terminalId = 0;
@@ -85,6 +84,8 @@ public static class TerminalManager
         TStreamProvider terminalStreamProvider = (TStreamProvider) typeof(TStreamProvider).GetMethod("CreateStandardStreamProvider").Invoke(null, [childTerminal]);
 
         terminalStreamProvider.AcquireStandardStreams();
+        childTerminal.CommunicationStreamClient = await terminalStreamProvider.AcquireCommunicationStreamAsync();
+        
         
         return childTerminal;
     }

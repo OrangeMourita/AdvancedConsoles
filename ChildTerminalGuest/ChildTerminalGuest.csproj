@@ -9,6 +9,7 @@
 
     <ItemGroup>
       <PackageReference Include="CommandLineParser" Version="2.9.1" />
+      <PackageReference Include="StreamJsonRpc" Version="2.17.11" />
     </ItemGroup>
 
 </Project>

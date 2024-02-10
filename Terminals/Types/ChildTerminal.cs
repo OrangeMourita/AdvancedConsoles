@@ -1,6 +1,7 @@
 using System.IO.Pipes;
 using System.Runtime.InteropServices;
 using Terminals.Emulators;
+using Terminals.StreamProviding.Streams;
 
 namespace Terminals.Types;
 
@@ -13,6 +14,7 @@ public class ChildTerminal : Terminal
 
     private static readonly SemaphoreSlim SemaphoreSlim = new SemaphoreSlim(1,1);    
     public int TerminalId { get; private init; }
+    public TerminalCommunicationStreamClient CommunicationStreamClient { get; internal set; }
 
 
     public static async Task<ChildTerminal> CreateAsync(int terminalId, LaunchCommand launchCommand)
@@ -53,7 +55,7 @@ public class ChildTerminal : Terminal
     private static string GetRemoteTerminalGuestPath()
     {
         string baseDirectory = AppDomain.CurrentDomain.BaseDirectory;
-        string fileName = "Terminals.CoreinalGuest";
+        string fileName = "ChildTerminalGuest";
         string fileExtension;
         
         if (RuntimeInformation.IsOSPlatform(OSPlatform.Windows))

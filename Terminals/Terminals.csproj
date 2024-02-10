@@ -8,10 +8,17 @@
 
     <ItemGroup>
       <PackageReference Include="H.Pipes" Version="2.1.0-dev.322" />
+      <PackageReference Include="StreamJsonRpc" Version="2.17.11" />
     </ItemGroup>
 
     <ItemGroup>
       <ProjectReference Include="..\ChildTerminalGuest\ChildTerminalGuest.csproj" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <Compile Update="StreamProviding\Streams\UnixTerminalStream.cs">
+        <DependentUpon>TerminalStream.cs</DependentUpon>
+      </Compile>
     </ItemGroup>
 
 </Project>

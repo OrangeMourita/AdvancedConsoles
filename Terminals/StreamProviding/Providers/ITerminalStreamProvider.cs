@@ -1,3 +1,4 @@
+using Terminals.StreamProviding.Streams;
 using Terminals.Types;
 
 namespace Terminals.StreamProviding.Providers;
@@ -13,7 +14,7 @@ public interface ITerminalStreamProvider
         Terminal.StandardError = AcquireStandardError();
     }
     
-    Stream AcquireStandardInput();
-    Stream AcquireStandardOutput();
-    Stream AcquireStandardError();
+    TerminalStream AcquireStandardInput();
+    TerminalStream AcquireStandardOutput();
+    TerminalStream AcquireStandardError();
 }

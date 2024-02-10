@@ -1,17 +1,21 @@
 ﻿using System.IO.Pipes;
 using CommandLine;
+using StreamJsonRpc;
 
 namespace ChildTerminalGuest;
 
 public class Program
-{
-    static object ExitLock = new object();
+{ 
+    private static readonly object ExitLock = new object();
+    private static NamedPipeServerStream _communicationPipe = null!;
+    private static JsonRpc _rpc = null!;
     
     
     public static async Task Main(string[] args)
     {
         await Parser.Default.ParseArguments<Options>(args)
             .WithParsedAsync(RunAsync);
+        
         
         // TODO Replace with functionality to respond to client requests
         lock(ExitLock)
@@ -27,6 +31,9 @@ public class Program
     {
         int terminalId = options.TerminalId;
         await EmitGuestProcessIdAsync(options.ProcessId);
+
+        await CreateCommunicationStreamAsync();
+        _rpc.StartListening();
     }
 
     public static async Task EmitGuestProcessIdAsync(int hostProcessId)
@@ -40,6 +47,15 @@ public class Program
         {
             await pidPipeWriter.WriteLineAsync(Environment.ProcessId.ToString());
         }
+    }
+
+    public static async Task CreateCommunicationStreamAsync()
+    {
+        // Todo: Move functionality to TerminalCommunicationStreamServer
+        _communicationPipe = new NamedPipeServerStream($"ChildTerminalCommunication_{Environment.ProcessId}");
+        await _communicationPipe.WaitForConnectionAsync();
+        
+        _rpc = JsonRpc.Attach(_communicationPipe, new ConsoleWrapper());
     }
     
     
